@@ -6,6 +6,7 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 COPY ["Directory.Build.props", "."]
 COPY ["src/BuildingBlocks/BuildingBlocks.Abstractions/BuildingBlocks.Abstractions.csproj", "src/BuildingBlocks/BuildingBlocks.Abstractions/"]
+COPY ["src/BuildingBlocks/BuildingBlocks.Messaging/BuildingBlocks.Messaging.csproj", "src/BuildingBlocks/BuildingBlocks.Messaging/"]
 COPY ["src/SystemManagement/Modules/AccessCardManagement/AccessCardManagement.Domain/AccessCardManagement.Domain.csproj", "src/SystemManagement/Modules/AccessCardManagement/AccessCardManagement.Domain/"]
 COPY ["src/SystemManagement/Modules/AccessCardManagement/AccessCardManagement.Application/AccessCardManagement.Application.csproj", "src/SystemManagement/Modules/AccessCardManagement/AccessCardManagement.Application/"]
 COPY ["src/SystemManagement/Modules/AccessCardManagement/AccessCardManagement.Infrastructure/AccessCardManagement.Infrastructure.csproj", "src/SystemManagement/Modules/AccessCardManagement/AccessCardManagement.Infrastructure/"]

@@ -4,6 +4,8 @@ VisualStudioVersion = 18.3.11520.95 d18.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuildingBlocks.Abstractions", "src\BuildingBlocks\BuildingBlocks.Abstractions\BuildingBlocks.Abstractions.csproj", "{A1000000-0000-0000-0000-000000000001}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuildingBlocks.Messaging", "src\BuildingBlocks\BuildingBlocks.Messaging\BuildingBlocks.Messaging.csproj", "{A2000000-0000-0000-0000-000000000001}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserManagement.Domain", "src\UserManagement\UserManagement.Domain\UserManagement.Domain.csproj", "{B1000000-0000-0000-0000-000000000001}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserManagement.Application", "src\UserManagement\UserManagement.Application\UserManagement.Application.csproj", "{B2000000-0000-0000-0000-000000000001}"
@@ -70,6 +72,10 @@ Global
 		{A1000000-0000-0000-0000-000000000001}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A1000000-0000-0000-0000-000000000001}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A1000000-0000-0000-0000-000000000001}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2000000-0000-0000-0000-000000000001}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2000000-0000-0000-0000-000000000001}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2000000-0000-0000-0000-000000000001}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2000000-0000-0000-0000-000000000001}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B1000000-0000-0000-0000-000000000001}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B1000000-0000-0000-0000-000000000001}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B1000000-0000-0000-0000-000000000001}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -152,6 +158,7 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{A1000000-0000-0000-0000-000000000001} = {10000000-0000-0000-0000-000000000001}
+		{A2000000-0000-0000-0000-000000000001} = {10000000-0000-0000-0000-000000000001}
 		{B1000000-0000-0000-0000-000000000001} = {20000000-0000-0000-0000-000000000001}
 		{B2000000-0000-0000-0000-000000000001} = {20000000-0000-0000-0000-000000000001}
 		{B3000000-0000-0000-0000-000000000001} = {20000000-0000-0000-0000-000000000001}

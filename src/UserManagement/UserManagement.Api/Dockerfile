@@ -6,6 +6,7 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 COPY ["Directory.Build.props", "."]
 COPY ["src/BuildingBlocks/BuildingBlocks.Abstractions/BuildingBlocks.Abstractions.csproj", "src/BuildingBlocks/BuildingBlocks.Abstractions/"]
+COPY ["src/BuildingBlocks/BuildingBlocks.Messaging/BuildingBlocks.Messaging.csproj", "src/BuildingBlocks/BuildingBlocks.Messaging/"]
 COPY ["src/UserManagement/UserManagement.Domain/UserManagement.Domain.csproj", "src/UserManagement/UserManagement.Domain/"]
 COPY ["src/UserManagement/UserManagement.Application/UserManagement.Application.csproj", "src/UserManagement/UserManagement.Application/"]
 COPY ["src/UserManagement/UserManagement.Infrastructure/UserManagement.Infrastructure.csproj", "src/UserManagement/UserManagement.Infrastructure/"]

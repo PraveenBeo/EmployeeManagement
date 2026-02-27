@@ -6,5 +6,6 @@
     <ProjectReference Include="..\Modules\AccessCardManagement\AccessCardManagement.Presentation\AccessCardManagement.Presentation.csproj" />
     <ProjectReference Include="..\Modules\LeaveManagement\LeaveManagement.Presentation\LeaveManagement.Presentation.csproj" />
     <ProjectReference Include="..\Modules\ReportManagement\ReportManagement.Presentation\ReportManagement.Presentation.csproj" />
+    <ProjectReference Include="..\..\BuildingBlocks\BuildingBlocks.Messaging\BuildingBlocks.Messaging.csproj" />
   </ItemGroup>
 </Project>
