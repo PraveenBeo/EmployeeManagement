@@ -20,7 +20,7 @@ public class UsersModel : PageModel
         var client = _httpClientFactory.CreateClient("UserApi");
         try
         {
-            var response = await client.GetAsync("/users");
+            var response = await client.GetAsync("/api/users");
             if (response.IsSuccessStatusCode)
             {
                 var json = await response.Content.ReadAsStringAsync();

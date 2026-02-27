@@ -73,6 +73,23 @@ services:
       - postgres-leave
       - postgres-report
 
+  # ---------- API Gateway ----------
+  api-gateway:
+    build:
+      context: .
+      dockerfile: src/Gateway/EmployeeManagement.Gateway/Dockerfile
+    ports:
+      - "5003:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ReverseProxy__Clusters__user-management-cluster__Destinations__destination1__Address=http://usermanagement-api:8080
+      - ReverseProxy__Clusters__system-management-cluster__Destinations__destination1__Address=http://systemmanagement-api:8080
+      - DownstreamServices__UserManagementApi=http://usermanagement-api:8080
+      - DownstreamServices__SystemManagementApi=http://systemmanagement-api:8080
+    depends_on:
+      - usermanagement-api
+      - systemmanagement-api
+
   # ---------- Web ----------
   web:
     build:
@@ -82,11 +99,9 @@ services:
       - "5000:8080"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ServiceUrls__UserManagementApi=http://usermanagement-api:8080
-      - ServiceUrls__SystemManagementApi=http://systemmanagement-api:8080
+      - ServiceUrls__GatewayApi=http://api-gateway:8080
     depends_on:
-      - usermanagement-api
-      - systemmanagement-api
+      - api-gateway
 
 volumes:
   pgdata-usermanagement:

@@ -20,7 +20,7 @@ public class SystemModel : PageModel
         var client = _httpClientFactory.CreateClient("SystemApi");
         try
         {
-            var response = await client.GetAsync("/accesscards");
+            var response = await client.GetAsync("/api/system/accesscards");
             if (response.IsSuccessStatusCode)
             {
                 var json = await response.Content.ReadAsStringAsync();
