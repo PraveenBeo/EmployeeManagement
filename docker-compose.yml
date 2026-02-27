@@ -1,0 +1,95 @@
+services:
+  # ---------- Databases ----------
+  postgres-usermanagement:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: usermanagement_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5433:5432"
+    volumes:
+      - pgdata-usermanagement:/var/lib/postgresql/data
+
+  postgres-accesscard:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: accesscard_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5434:5432"
+    volumes:
+      - pgdata-accesscard:/var/lib/postgresql/data
+
+  postgres-leave:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: leave_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5435:5432"
+    volumes:
+      - pgdata-leave:/var/lib/postgresql/data
+
+  postgres-report:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: report_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5436:5432"
+    volumes:
+      - pgdata-report:/var/lib/postgresql/data
+
+  # ---------- APIs ----------
+  usermanagement-api:
+    build:
+      context: .
+      dockerfile: src/UserManagement/UserManagement.Api/Dockerfile
+    ports:
+      - "5001:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Host=postgres-usermanagement;Port=5432;Database=usermanagement_db;Username=postgres;Password=postgres
+    depends_on:
+      - postgres-usermanagement
+
+  systemmanagement-api:
+    build:
+      context: .
+      dockerfile: src/SystemManagement/SystemManagement.Api/Dockerfile
+    ports:
+      - "5002:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__AccessCardConnection=Host=postgres-accesscard;Port=5432;Database=accesscard_db;Username=postgres;Password=postgres
+      - ConnectionStrings__LeaveConnection=Host=postgres-leave;Port=5432;Database=leave_db;Username=postgres;Password=postgres
+      - ConnectionStrings__ReportConnection=Host=postgres-report;Port=5432;Database=report_db;Username=postgres;Password=postgres
+    depends_on:
+      - postgres-accesscard
+      - postgres-leave
+      - postgres-report
+
+  # ---------- Web ----------
+  web:
+    build:
+      context: .
+      dockerfile: src/Web/EmployeeManagement.Web/Dockerfile
+    ports:
+      - "5000:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ServiceUrls__UserManagementApi=http://usermanagement-api:8080
+      - ServiceUrls__SystemManagementApi=http://systemmanagement-api:8080
+    depends_on:
+      - usermanagement-api
+      - systemmanagement-api
+
+volumes:
+  pgdata-usermanagement:
+  pgdata-accesscard:
+  pgdata-leave:
+  pgdata-report:

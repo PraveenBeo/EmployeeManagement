@@ -1,0 +1,19 @@
+@page
+@model SystemModel
+
+<h1>System - Access Cards</h1>
+<p><a href="/">Back to Home</a></p>
+
+@if (Model.AccessCards is not null && Model.AccessCards.Count > 0)
+{
+    <ul>
+        @foreach (var card in Model.AccessCards)
+        {
+            <li>@card.CardNumber - @card.EmployeeName (Created: @card.CreatedUtc.ToString("g"))</li>
+        }
+    </ul>
+}
+else
+{
+    <p>No access cards found. Use the API to create cards via POST /accesscards.</p>
+}

@@ -1,0 +1,19 @@
+@page
+@model UsersModel
+
+<h1>Users</h1>
+<p><a href="/">Back to Home</a></p>
+
+@if (Model.Users is not null && Model.Users.Count > 0)
+{
+    <ul>
+        @foreach (var user in Model.Users)
+        {
+            <li>@user.FullName - @user.Email (Created: @user.CreatedUtc.ToString("g"))</li>
+        }
+    </ul>
+}
+else
+{
+    <p>No users found. Use the API to create users via POST /users.</p>
+}
